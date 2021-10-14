@@ -1,0 +1,111 @@
+.currency-symbol{
+  font-size: 20px !important;
+  color:blue;
+  box-sizing: border-box;
+  transform: translateY(1px);
+}
+
+.active-currency{
+
+}
+
+.currency-selector.dropdown-menu{
+  text-align: center;
+  min-width: 5rem;
+
+}
+
+.currency-selector a{
+  font-size: 1.2em;
+  font-weight:bold;
+  cursor: pointer;
+}
+
+.card-body{
+  padding: 30px 10px !important;
+}
+
+.place-center{
+  display: grid;
+  place-items:center;
+}
+
+.row{
+  --bs-gutter-x:10px;
+}
+
+.text-sm{
+  font-size:12px;
+}
+
+.top-1 .card{
+  height:90%;
+}
+
+td.details-control {
+    background: url('../package/dist/js/pages/datatable/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('../package/dist/js/pages/datatable/details_close.png') no-repeat center center;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd){
+  --bs-table-accent-bg: None;
+}
+
+.company-logo{
+  width:30px;
+  border-radius:50%;
+}
+
+.company-logo.small{
+  width:15px
+}
+
+.stylize{
+  gap:0.5em;
+  height: 100%;
+}
+
+.stylize .upper, .lower{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  gap:0.6em;
+}
+
+.lower{
+  font-size:13px;
+}
+
+.stylize .fas{
+  opacity:0.3;
+  font-size: 16px;
+  margin-right: 4px;
+}
+
+.table-stats{
+  gap:0.2em;
+}
+
+.chart-btns{
+  gap:0.25em;
+  justify-content: center;
+}
+
+.chart-btns button{
+  border:none;
+
+  padding: 10px 14px;
+}
+
+button.active{
+  background:blue;
+  color:white;
+  font-weight: bold;
+}
+
+.dashed-1{
+  border: 1px dashed lightgray;
+}
