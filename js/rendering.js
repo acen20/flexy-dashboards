@@ -438,8 +438,8 @@ fill: {
 },
 };
 
-var chart = new ApexCharts(document.querySelector("#chart-timeline"), options);
-chart.render();
+var timeline_chart = new ApexCharts(document.querySelector("#chart-timeline"), options);
+timeline_chart.render();
 
 
 var resetCssClasses = function(activeEl) {
@@ -456,7 +456,7 @@ document
 .addEventListener('click', function(e) {
   resetCssClasses(e)
 
-  chart.zoomX(
+  timeline_chart.zoomX(
     new Date('28 Jan 2013').getTime(),
     new Date('27 Feb 2013').getTime()
   )
@@ -467,7 +467,7 @@ document
 .addEventListener('click', function(e) {
   resetCssClasses(e)
 
-  chart.zoomX(
+  timeline_chart.zoomX(
     new Date('27 Sep 2012').getTime(),
     new Date('27 Feb 2013').getTime()
   )
@@ -486,7 +486,7 @@ document
 document.querySelector('#ytd').addEventListener('click', function(e) {
 resetCssClasses(e)
 
-chart.zoomX(
+timeline_chart.zoomX(
   new Date('01 Jan 2013').getTime(),
   new Date('27 Feb 2013').getTime()
 )
@@ -495,7 +495,7 @@ chart.zoomX(
 document.querySelector('#all').addEventListener('click', function(e) {
 resetCssClasses(e)
 
-chart.zoomX(
+timeline_chart.zoomX(
   new Date('23 Jan 2012').getTime(),
   new Date('27 Feb 2013').getTime()
 )
