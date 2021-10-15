@@ -337,7 +337,7 @@ $(function () {
     },
 
     // Add custom colors
-    color: palette.slice(12, palette.length),
+    color: palette.slice(0, palette.length),
 
     // Display toolbox
     toolbox: {
