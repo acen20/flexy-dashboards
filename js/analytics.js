@@ -27,18 +27,29 @@ const update_currency = (e) => {
 // based on prepared DOM, initialize echarts instance
 $(function () {
   var assets = portfolioValue["assets"];
-  var etf = Number(
-    assets.filter((asset) => asset["type"] == "STOCK:ETF").length
-  );
-  var bond = Number(
-    assets.filter((asset) => asset["type"].includes("BOND:")).length
-  );
-  var stock = Number(
-    assets.filter(
-      (asset) => asset["type"].includes("STOCK") && asset["type"] != "STOCK:ETF"
-    ).length
-  );
-  var other = stock + etf + bond - assets.length;
+  var eur = 0.0;
+  assets
+    .filter((asset) => asset["currency"] == "EUR")
+    .forEach((asset) => {
+      eur += Number(asset["equalInEUR"]);
+    });
+  console.log(eur);
+
+  var usd = 0.0;
+  assets
+    .filter((asset) => asset["currency"] == "USD")
+    .forEach((asset) => {
+      usd += Number(asset["equalInEUR"]);
+    });
+  console.log(usd);
+
+  var rub = 0.0;
+  assets
+    .filter((asset) => asset["currency"] == "RUB")
+    .forEach((asset) => {
+      rub += Number(asset["equalInEUR"]);
+    });
+  console.log(rub);
 
   var basicdoughnutChart = echarts.init(
     document.getElementById("basic-doughnut")
@@ -46,7 +57,7 @@ $(function () {
   var option = {
     // Add title
     title: {
-      text: "Asset Categories",
+      text: "Currencies",
       subtext: "Open source information",
       x: "center",
     },
@@ -55,12 +66,12 @@ $(function () {
     legend: {
       orient: "vertical",
       x: "left",
-      data: ["Internet Explorer", "Opera", "Safari", "Firefox", "Chrome"],
+      data: ["EUR", "USD", "RUB"],
       show: false,
     },
 
     // Add custom colors
-    color: ["#ffbc34", "#4fc3f7", "#212529", "#f62d51", "#2962FF"],
+    color: ["#ffbc34", "#4fc3f7", "crimson"],
 
     // Display toolbox
     toolbox: {
@@ -119,7 +130,7 @@ $(function () {
       {
         name: "Categories",
         type: "pie",
-        radius: ["50%", "70%"],
+        radius: ["40%", "70%"],
         center: ["50%", "57.5%"],
         itemStyle: {
           normal: {
@@ -132,7 +143,7 @@ $(function () {
           },
           emphasis: {
             label: {
-              show: true,
+              show: false,
               formatter: "{b}" + "nn" + "{c} ({d}%)",
               position: "center",
               textStyle: {
@@ -144,11 +155,9 @@ $(function () {
         },
 
         data: [
-          { value: 335, name: "Internet Explorer" },
-          { value: 310, name: "Opera" },
-          { value: 234, name: "Safari" },
-          { value: 135, name: "Firefox" },
-          { value: 1548, name: "Chrome" },
+          { value: eur, name: "EUR" },
+          { value: usd, name: "USD" },
+          { value: rub, name: "RUB" },
         ],
       },
     ],
@@ -429,7 +438,7 @@ $(function () {
   var option = {
     // Add title
     title: {
-      text: "Browser popularity",
+      text: "Industries",
       subtext: "Open source information",
       x: "center",
     },
