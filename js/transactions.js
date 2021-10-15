@@ -1,6 +1,10 @@
 var transactions = deposits["transactions"];
 var com_transactions = commissions["transactions"];
 var pageLength = 5;
+var lengthMenu = [
+  [5, 10, 50, -1],
+  [5, 10, 50, "All"],
+];
 
 function create_table1_layout() {
   var table_layout = `  <table id="dom_jq_event1" class="w-100 table table-striped table-bordered no-wrap">
@@ -33,7 +37,7 @@ function create_table2_layout() {
           <th>Date</th>
           <th>Amount</th>
           <th>Currency</th>
-          <th>Comment</th>
+          <th>Type</th>
           <th>Comment</th>
           </tr>
       </thead>
@@ -41,11 +45,11 @@ function create_table2_layout() {
       </tbody>
       <tfoot>
           <tr>
-            <th>Ticker</th>
-            <th>Portfolio %</th>
-            <th>Amount</th>
-            <th>Current Price</th>
-            <th>Comment</th>
+          <th>Date</th>
+          <th>Amount</th>
+          <th>Currency</th>
+          <th>Type</th>
+          <th>Comment</th>
           </tr>
       </tfoot>
   </table>`;
@@ -61,6 +65,7 @@ const initialize_table1 = () => {
       { data: "comment" },
     ],
     pageLength: 5,
+    lengthMenu: lengthMenu,
     order: [[2, "asc"]],
     destroy: true,
   });
@@ -72,10 +77,11 @@ const initialize_table2 = () => {
       { data: "date" },
       { data: "amount" },
       { data: "currency" },
-      { data: "comment" },
+      { data: "type" },
       { data: "comment" },
     ],
     pageLength: pageLength,
+    lengthMenu: lengthMenu,
     order: [[2, "asc"]],
     destroy: true,
   });
@@ -126,12 +132,12 @@ const render_table1 = () => {
 const render_table2 = () => {
   document.querySelector("#dom_jq_event2").remove();
   create_table2_layout();
-  var tbody = document.querySelector("tbody");
-  if ($.fn.dataTable.isDataTable("#dom_jq_event1")) {
-    $("#dom_jq_event1").DataTable().destroy();
+  var tbody = document.querySelector("#dom_jq_event2 tbody");
+  if ($.fn.dataTable.isDataTable("#dom_jq_event2")) {
+    $("#dom_jq_event2").DataTable().destroy();
   }
   let iterator = 0;
-  transactions.forEach((transaction) => {
+  com_transactions.forEach((transaction) => {
     //currency controller
     let current_curr = String(currencies[selected_cur]);
     let obj_price = "equalIn".concat(current_curr);
@@ -142,6 +148,7 @@ const render_table2 = () => {
     var amount = transaction["amount"];
     var currency = transaction["currency"];
     var comment = transaction["comment"];
+    var type = transaction["type"];
 
     let item =
       `<tr id="asset-tr-` +
@@ -159,7 +166,7 @@ const render_table2 = () => {
       <td>` +
       type +
       `</td>
-      <td>` +
+      <td class="overflow-hidden text-wrap">` +
       comment +
       `</td>
   </tr>`;
