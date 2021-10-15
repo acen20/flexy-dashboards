@@ -143,11 +143,11 @@ $(function () {
           },
           emphasis: {
             label: {
-              show: false,
-              formatter: "{b}" + "nn" + "{c} ({d}%)",
+              show: true,
+              formatter: "{b}" + "" + "({d}%)",
               position: "center",
               textStyle: {
-                fontSize: "17",
+                fontSize: "14",
                 fontWeight: "500",
               },
             },
@@ -187,11 +187,11 @@ $(function () {
 
     // Add Legend
     legend: {
-      data: ["Max temp", "Min temp"],
+      data: ["Max temp", "Min temp", "Other"],
     },
 
     // Add custom colors
-    color: ["#1e88e5", "#f62d51"],
+    color: palette.reverse(),
 
     // Enable drag recalculate
     calculable: true,
@@ -201,7 +201,15 @@ $(function () {
       {
         type: "category",
         boundaryGap: false,
-        data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        data: [
+          "12 Jul 2021",
+          "18 Jul 2021",
+          "19 Jul 2021",
+          "26 Jul 2021",
+          "12 Aug 2021",
+          "22 Sep 2021",
+          "03 Oct 2021",
+        ],
         color: "#efefef",
       },
     ],
@@ -211,7 +219,7 @@ $(function () {
       {
         type: "value",
         axisLabel: {
-          formatter: "{value} °C",
+          formatter: "{value}",
         },
       },
     ],
@@ -244,6 +252,25 @@ $(function () {
         name: "Min temp",
         type: "line",
         data: [1, -2, 2, 5, 3, 2, 0],
+        markPoint: {
+          data: [{ name: "Week low", value: -2, xAxis: 1, yAxis: -1.5 }],
+        },
+        markLine: {
+          data: [{ type: "average", name: "Average" }],
+        },
+        lineStyle: {
+          normal: {
+            width: 3,
+            shadowColor: "rgba(0,0,0,0.1)",
+            shadowBlur: 10,
+            shadowOffsetY: 10,
+          },
+        },
+      },
+      {
+        name: "Other",
+        type: "line",
+        data: [5, 10, 20, 25, 2, 12, 12],
         markPoint: {
           data: [{ name: "Week low", value: -2, xAxis: 1, yAxis: -1.5 }],
         },
@@ -337,7 +364,7 @@ $(function () {
     },
 
     // Add custom colors
-    color: palette.slice(0, palette.length),
+    color: palette.slice(1, palette.length),
 
     // Display toolbox
     toolbox: {
