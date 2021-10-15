@@ -1,3 +1,27 @@
+var currency_symbol = document.querySelector('.currency-symbol');
+var currency_selector = document.querySelector('.currency-selector');
+var currencies_ = currency_selector.children;
+
+for (var i=0; i < currencies_.length; i++){
+  currencies_[i].addEventListener('click', (e) => {
+    update_currency(e);
+    var current = currency_symbol.innerHTML;
+    currency_symbol.innerHTML = e.target.innerHTML;
+    e.target.innerHTML = current;
+})
+}
+
+const update_currency = (e) => {
+  let symbol = e.target.innerHTML;
+  selected_cur = symbols.indexOf(symbol);
+  current_currency['symbol'] = symbols[selected_cur];
+  //update_costs();
+  //change_asset_currency();
+  //update_portfolio_total();
+  //update_portfolio_total_chart();
+}
+
+
 //------------------------------
 // Basic pie chart
 // ------------------------------
