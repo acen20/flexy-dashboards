@@ -1,5 +1,6 @@
 var transactions = deposits["transactions"];
 var com_transactions = commissions["transactions"];
+var dividend_transactions = corpactions["transactions"];
 var pageLength = 5;
 var lengthMenu = [
   [5, 10, 50, -1],
@@ -57,7 +58,7 @@ function create_table2_layout() {
 }
 
 function create_table3_layout() {
-  var table_layout = `  <table id="dom_jq_event3" class="w-100 table table-striped table-bordered no-wrap">
+  var table_layout = `  <table id="dom_jq_event3" class="w-100 table table-striped table-bordered no-wrap overflow-hidden">
       <thead>
           <tr>
           <th>Date</th>
@@ -65,7 +66,7 @@ function create_table3_layout() {
           <th>Amount</th>
           <th>Currency</th>
           <th>Ticker</th>
-          <th>Fixation Data</th>
+          <th>Fixation Date</th>
           <th>Source Tax</th>
           <th>Source Tax Currency</th>
           <th>Comment</th>
@@ -80,7 +81,7 @@ function create_table3_layout() {
           <th>Amount</th>
           <th>Currency</th>
           <th>Ticker</th>
-          <th>Fixation Data</th>
+          <th>Fixation Date</th>
           <th>Source Tax</th>
           <th>Source Tax Currency</th>
           <th>Comment</th>
@@ -129,6 +130,10 @@ const initialize_table3 = () => {
       { data: "currency" },
       { data: "type" },
       { data: "comment" },
+      { data: "ticker" },
+      { data: "fixation_date" },
+      { data: "src_tax" },
+      { data: "src_tax_currency" },
     ],
     pageLength: pageLength,
     lengthMenu: lengthMenu,
@@ -233,7 +238,7 @@ const render_table3 = () => {
     $("#dom_jq_event3").DataTable().destroy();
   }
   let iterator = 0;
-  com_transactions.forEach((transaction) => {
+  dividend_transactions.forEach((transaction) => {
     //currency controller
     let current_curr = String(currencies[selected_cur]);
     let obj_price = "equalIn".concat(current_curr);
@@ -242,8 +247,14 @@ const render_table3 = () => {
       .toDate()
       .toLocaleDateString("en-GB", options);
     var amount = transaction["amount"];
+    var ticker = transaction["ticker"];
     var currency = transaction["currency"];
     var comment = transaction["comment"];
+    var fixation_date = moment(transaction["ficsationDate"], "YYYY-MM-DD")
+      .toDate()
+      .toLocaleDateString("en-GB", options);
+    var src_tax = transaction["sourceTax"];
+    var src_tax_currency = transaction["sourceTaxCurrency"];
     var type = transaction["type"];
 
     let item =
@@ -254,13 +265,25 @@ const render_table3 = () => {
       date +
       `</td>
       <td>` +
+      type +
+      `</td>
+      <td>` +
       amount +
       `</td>
       <td>` +
       currency +
       `</td>
       <td>` +
-      type +
+      ticker +
+      `</td>
+      <td>` +
+      fixation_date +
+      `</td>
+      <td>` +
+      src_tax +
+      `</td>
+      <td>` +
+      src_tax_currency +
       `</td>
       <td class="overflow-hidden text-wrap">` +
       comment +
