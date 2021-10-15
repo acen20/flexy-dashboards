@@ -71,7 +71,7 @@ $(function () {
     },
 
     // Add custom colors
-    color: ["#ffbc34", "#4fc3f7", "crimson"],
+    color: palette.slice(29, palette.length),
 
     // Display toolbox
     toolbox: {
@@ -337,7 +337,7 @@ $(function () {
     },
 
     // Add custom colors
-    color: ["lightgray", "#4fc3f7", "blue", "#f62d51"],
+    color: palette.slice(12, palette.length),
 
     // Display toolbox
     toolbox: {
@@ -434,6 +434,31 @@ $(function () {
 
 //=================Row2 charts=================
 $(function () {
+  function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+  }
+  let assets = portfolioValue["assets"];
+  let industries = [];
+  assets.forEach((asset) => {
+    industries.push(asset["industryNameEN"]);
+  });
+  industries = industries.filter(onlyUnique);
+  console.log(industries.length);
+  var i = 0;
+  industries.forEach((industry) => {
+    var value = 0.0;
+    assets
+      .filter((asset) => asset["industryNameEN"] == industry)
+      .forEach((asset) => {
+        value += Number(asset["equalInEUR"]);
+        industries[i] = {
+          name: industry,
+          value: value,
+        };
+      });
+    i += 1;
+  });
+  console.log(industries);
   var basicdoughnutChart = echarts.init(document.getElementById("basic-pie2"));
   var option = {
     // Add title
@@ -452,7 +477,7 @@ $(function () {
     },
 
     // Add custom colors
-    color: ["#ffbc34", "#4fc3f7", "#212529", "#f62d51", "#2962FF"],
+    color: palette,
 
     // Display toolbox
     toolbox: {
@@ -502,6 +527,14 @@ $(function () {
         },
       },
     },
+    theme: {
+      monochrome: {
+        enabled: true,
+        color: "#255aee",
+        shadeTo: "light",
+        shadeIntensity: 0.65,
+      },
+    },
 
     // Enable drag recalculate
     calculable: true,
@@ -511,7 +544,7 @@ $(function () {
       {
         name: "Browsers",
         type: "pie",
-        radius: ["0%", "70%"],
+        radius: ["0%", "60%"],
         center: ["50%", "57.5%"],
         itemStyle: {
           normal: {
@@ -525,23 +558,18 @@ $(function () {
           emphasis: {
             label: {
               show: true,
-              formatter: "{b}" + "nn" + "{c} ({d}%)",
+              formatter: "{b}" + "" + "\n({d}%)",
               position: "center",
               textStyle: {
-                fontSize: "17",
-                fontWeight: "500",
+                fontWeight: "300",
               },
+              width: 20,
+              overflow: "truncate",
             },
           },
         },
 
-        data: [
-          { value: 335, name: "Internet Explorer" },
-          { value: 310, name: "Opera" },
-          { value: 234, name: "Safari" },
-          { value: 135, name: "Firefox" },
-          { value: 1548, name: "Chrome" },
-        ],
+        data: industries,
       },
     ],
   };
@@ -549,13 +577,38 @@ $(function () {
 });
 
 $(function () {
+  function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+  }
+  let assets = portfolioValue["assets"];
+  let industries = [];
+  assets.forEach((asset) => {
+    industries.push(asset["sectorNameEN"]);
+  });
+  industries = industries.filter(onlyUnique);
+  console.log(industries.length);
+  var i = 0;
+  industries.forEach((industry) => {
+    var value = 0.0;
+    assets
+      .filter((asset) => asset["sectorNameEN"] == industry)
+      .forEach((asset) => {
+        value += Number(asset["equalInEUR"]);
+        industries[i] = {
+          name: industry,
+          value: value,
+        };
+      });
+    i += 1;
+  });
+  console.log(industries);
   var basicdoughnutChart = echarts.init(
     document.getElementById("basic-doughnut2")
   );
   var option = {
     // Add title
     title: {
-      text: "Browser popularity",
+      text: "Sectors",
       subtext: "Open source information",
       x: "center",
     },
@@ -565,11 +618,11 @@ $(function () {
       orient: "vertical",
       x: "left",
       data: ["Internet Explorer", "Opera", "Safari", "Firefox", "Chrome"],
-      show: true,
+      show: false,
     },
 
     // Add custom colors
-    color: ["#ffbc34", "#4fc3f7", "#212529", "#f62d51", "#2962FF"],
+    color: palette.reverse().slice(12, palette.length),
 
     // Display toolbox
     toolbox: {
@@ -642,23 +695,16 @@ $(function () {
           emphasis: {
             label: {
               show: true,
-              formatter: "{b}" + "nn" + "{c} ({d}%)",
+              formatter: "{b}" + "" + "\n({d}%)",
               position: "center",
               textStyle: {
-                fontSize: "17",
                 fontWeight: "500",
               },
             },
           },
         },
 
-        data: [
-          { value: 335, name: "Internet Explorer" },
-          { value: 310, name: "Opera" },
-          { value: 234, name: "Safari" },
-          { value: 135, name: "Firefox" },
-          { value: 1548, name: "Chrome" },
-        ],
+        data: industries,
       },
     ],
   };
