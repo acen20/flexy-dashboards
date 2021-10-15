@@ -36,7 +36,6 @@
     <link href="package/dist/css/style.min.css" rel="stylesheet" />
     <link href="package/assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
     <link rel="stylesheet" href="css/custom.css">
-    <link rel="stylesheet" href="package/assets/libs/dropzone/dist/min/dropzone.min.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -484,7 +483,7 @@
                 <i class="mdi mdi-dots-horizontal"></i>
                 <span class="hide-menu">Personal</span>
               </li>
-              <li class="sidebar-item selected">
+              <li class="sidebar-item">
                 <a
                   class="sidebar-link has-arrow waves-effect waves-dark"
                   href="javascript:void(0)"
@@ -529,7 +528,7 @@
                 <i class="mdi mdi-dots-horizontal"></i>
                 <span class="hide-menu">Analytics</span>
               </li>
-              <li class="sidebar-item">
+              <li class="sidebar-item selected">
                 <a
                   class="sidebar-link waves-effect waves-dark"
                   href="javascript:void(0)"
@@ -695,9 +694,6 @@
 
       <!-- ============================================================== -->
       <div class="page-wrapper">
-        <div id="mychart">
-
-        </div>
         <!-- ============================================================== -->
         <!-- Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
@@ -742,23 +738,67 @@
         <div class="container-fluid">
           <!-- row -->
           <div class="row d-flex ">
-            <div class="col-lg-12">
+            <div class="col-lg-6">
               <div class="card">
                 <div class="border-bottom title-part-padding">
-                  <h4 class="mb-0">Dropzone</h4>
+                  <h4 class="mb-0">Pie chart</h4>
                 </div>
                 <div class="card-body">
                   <h6 class="card-subtitle mb-3">
-                    For multiple file upload put class <code>.dropzone</code> to
-                    form.
                   </h6>
-                  <form action="#" class="dropzone dz-clickable">
-
-                  <div class="dz-default dz-message"><button class="dz-button" type="button">Drop files here to upload</button></div></form>
+                  <div id="pie-chart" style="height:400px;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="border-bottom title-part-padding">
+                  <h4 class="mb-0">Donut Chart</h4>
+                </div>
+                <div class="card-body">
+                  <h6 class="card-subtitle mb-3">
+                  </h6>
+                  <div id="basic-doughnut" style="height:400px;"></div>
                 </div>
               </div>
             </div>
             <!-- column -->
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="border-bottom title-part-padding">
+                  <h4 class="mb-0">Donut Chart</h4>
+                </div>
+                <div class="card-body">
+                  <h6 class="card-subtitle mb-3">
+                  </h6>
+                  <div id="basic-pie2" style="height:400px;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="border-bottom title-part-padding">
+                  <h4 class="mb-0">Donut Chart</h4>
+                </div>
+                <div class="card-body">
+                  <h6 class="card-subtitle mb-3">
+                  </h6>
+                  <div id="basic-doughnut2" style="height:400px;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="border-bottom title-part-padding">
+                  <h4 class="mb-0">Donut Chart</h4>
+                </div>
+                <div class="card-body">
+                  <h6 class="card-subtitle mb-3">
+                  </h6>
+                  <div id="basic-doughnut" style="height:400px;"></div>
+                </div>
+              </div>
+            </div>
 
             </div>
 
@@ -1846,17 +1886,12 @@
     <script src="js/portfolioValue.js"></script>
     <script src="js/cash.js"></script>
     <script src="js/custom.js"></script>
-    <script src="js/assetTable.js"></script>
     <script src="package/assets/libs/echarts/dist/echarts-en.min.js"></script>
-    <script src="package/assets/libs/dropzone/index.js"></script>
-    <script src="package/assets/libs/dropzone/dist/min/dropzone.min.js"></script>
-    <script src="package/assets/libs/dropzone/dist/min/dropzone-amd-module.min.js"></script>
     <!---custom scripts-->
 
     <script src="js/data.js"></script>
-    <script src="js/updateLogic.js"></script>
-    <script src="js/update.js"></script>
-    <script src="js/rendering.js"></script>
+    <script src="package/assets/libs/chart.js/dist/Chart.bundle.js"></script>
+    <script src="js/analytics.js"></script>
 
   </body>
 </html>
