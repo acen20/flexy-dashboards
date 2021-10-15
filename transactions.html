@@ -43,6 +43,7 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="https://kit.fontawesome.com/178a048fff.js" crossorigin="anonymous"></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
 
   </head>
 
@@ -483,7 +484,7 @@
                 <i class="mdi mdi-dots-horizontal"></i>
                 <span class="hide-menu">Personal</span>
               </li>
-              <li class="sidebar-item selected">
+              <li class="sidebar-item">
                 <a
                   class="sidebar-link has-arrow waves-effect waves-dark"
                   href="javascript:void(0)"
@@ -510,12 +511,13 @@
                 <i class="mdi mdi-dots-horizontal"></i>
                 <span class="hide-menu">Transactions</span>
               </li>
-              <li class="sidebar-item">
+              <li class="sidebar-item selected">
                 <a
                   class="
                     sidebar-link
                     two-column
                     waves-effect waves-dark
+                    active
                   "
                   href="javascript:void(0)"
                   aria-expanded="false"
@@ -697,38 +699,6 @@
         <!-- ============================================================== -->
         <!-- Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
-        <div class="page-titles">
-          <div class="row">
-            <div class="col-lg-8 col-md-6 col-12 align-self-center">
-              <h4 class="text-muted mb-0 fw-normal">Welcome Johnathan</h4>
-              <h1 class="mb-0 fw-bold">eCommerce Dashboard</h1>
-            </div>
-            <div
-              class="
-                col-lg-4 col-md-6
-                d-none d-md-flex
-                align-items-center
-                justify-content-end
-              "
-            >
-              <select
-                class="form-select theme-select border-0"
-                aria-label="Default select example"
-              >
-                <option value="1">Today 23 March</option>
-                <option value="2">Today 24 March</option>
-                <option value="3">Today 25 March</option>
-              </select>
-              <a
-                href="javascript:void(0)"
-                class="btn btn-info d-flex align-items-center ms-2"
-              >
-                <i class="ri-add-line me-1"></i>
-                Add New
-              </a>
-            </div>
-          </div>
-        </div>
         <!-- ============================================================== -->
         <!-- End Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
@@ -750,6 +720,28 @@
                   </div>
 
                 </div>
+                <div class="card">
+                  <div class="border-bottom title-part-padding">
+                    <h4 class="mb-0">eCommerce Dashboard</h4>
+                  </div>
+                  <div id="table2-container" class="card-body">
+                    <table id="dom_jq_event2">
+
+                    </table>
+                    </div>
+
+                  </div>
+                  <div class="card">
+                    <div class="border-bottom title-part-padding">
+                      <h4 class="mb-0">eCommerce Dashboard</h4>
+                    </div>
+                    <div id="table3-container" class="card-body">
+                      <table id="dom_jq_event3">
+
+                      </table>
+                      </div>
+
+                    </div>
               </div>
             </div>
             <!-- column -->
