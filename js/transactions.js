@@ -1,15 +1,38 @@
+window.onload = () => {
+  update_tables_currencies();
+  change_asset_currency();
+};
+
+const update_currency = (e) => {
+  let symbol = e.target.innerHTML;
+  selected_cur = symbols.indexOf(symbol);
+  current_currency["symbol"] = symbols[selected_cur];
+  update_tables_currencies();
+  change_asset_currency();
+};
+
+const update_tables_currencies = () => {
+  let table_totals = document.querySelectorAll(".table-total");
+  console.log(table_totals.length);
+  table_totals[0].innerHTML =
+    symbols[selected_cur] + deposits.total[currencies[selected_cur]];
+  table_totals[1].innerHTML =
+    symbols[selected_cur] + commissions.total[currencies[selected_cur]];
+  table_totals[2].innerHTML =
+    symbols[selected_cur] +
+    corpactions.total.GRANDTOTAL[currencies[selected_cur]];
+};
+
 var currency_symbol = document.querySelector(".currency-symbol");
 var currency_selector = document.querySelector(".currency-selector");
 var currencies_ = currency_selector.children;
 
-update_currency = (e) => {};
-
 for (var i = 0; i < currencies_.length; i++) {
   currencies_[i].addEventListener("click", (e) => {
+    update_currency(e);
     var current = currency_symbol.innerHTML;
     currency_symbol.innerHTML = e.target.innerHTML;
     e.target.innerHTML = current;
-    update_currency(e);
   });
 }
 
@@ -173,7 +196,7 @@ const render_table1 = () => {
     var date = moment(transaction["date"], "DD-MM-YYYY")
       .toDate()
       .toLocaleDateString("en-GB", options);
-    var amount = transaction["amount"];
+    var amount = transaction[obj_price];
     var currency = transaction["currency"];
     var comment = transaction["comment"];
 
@@ -185,6 +208,7 @@ const render_table1 = () => {
       date +
       `</td>
       <td>` +
+      symbols[selected_cur] +
       amount +
       `</td>
       <td>` +
@@ -215,7 +239,7 @@ const render_table2 = () => {
     var date = moment(transaction["date"], "DD-MM-YYYY")
       .toDate()
       .toLocaleDateString("en-GB", options);
-    var amount = transaction["amount"];
+    var amount = transaction[obj_price];
     var currency = transaction["currency"];
     var comment = transaction["comment"];
     var type = transaction["type"];
@@ -228,6 +252,7 @@ const render_table2 = () => {
       date +
       `</td>
       <td>` +
+      symbols[selected_cur] +
       amount +
       `</td>
       <td>` +
@@ -261,7 +286,7 @@ const render_table3 = () => {
     var date = moment(transaction["date"], "DD-MM-YYYY")
       .toDate()
       .toLocaleDateString("en-GB", options);
-    var amount = transaction["amount"];
+    var amount = transaction[obj_price];
     var ticker = transaction["ticker"];
     var currency = transaction["currency"];
     var comment = transaction["comment"];
@@ -283,6 +308,7 @@ const render_table3 = () => {
       type +
       `</td>
       <td>` +
+      symbols[selected_cur] +
       amount +
       `</td>
       <td>` +
@@ -327,5 +353,3 @@ const change_asset_currency = () => {
   render_tables();
   initialize_tables();
 };
-
-change_asset_currency();
