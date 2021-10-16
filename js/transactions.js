@@ -1,3 +1,16 @@
+var currency_symbol = document.querySelector(".currency-symbol");
+var currency_selector = document.querySelector(".currency-selector");
+var currencies_ = currency_selector.children;
+
+for (var i = 0; i < currencies_.length; i++) {
+  currencies_[i].addEventListener("click", (e) => {
+    update_currency(e);
+    var current = currency_symbol.innerHTML;
+    currency_symbol.innerHTML = e.target.innerHTML;
+    e.target.innerHTML = current;
+  });
+}
+
 var transactions = deposits["transactions"];
 var com_transactions = commissions["transactions"];
 var dividend_transactions = corpactions["transactions"];
