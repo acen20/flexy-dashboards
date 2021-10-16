@@ -11,6 +11,38 @@ for (var i = 0; i < currencies_.length; i++) {
   });
 }
 
+const breakText = (text_) => {
+  let limit = 2;
+  let textlength = text_.split(" ").length;
+  let lines = Math.floor(text_.split(" ").length / 2);
+  let indexes = [];
+
+  while (lines) {
+    indexes.push(lines * limit);
+    lines -= 1;
+  }
+
+  text_ = text_.split(" ");
+  indexes.forEach((index) => {
+    text_.splice(index, 0, "\n");
+  });
+
+  console.log(text_);
+
+  {
+    /*while (lines) {
+    if (text_.split(" ").length > limit) {
+      text_ = text_.split(" ");
+      text_.splice(limit * lines, 0, "\n");
+      text_ = text_.join(" ");
+    }
+    console.log(lines);*/
+  }
+  //
+
+  return text_.join(" ");
+};
+
 const update_currency = (e) => {
   let symbol = e.target.innerHTML;
   selected_cur = symbols.indexOf(symbol);
@@ -442,6 +474,7 @@ $(function () {
               textStyle: {
                 fontSize: "14",
                 fontWeight: "500",
+                lineOverflow: "truncate",
               },
             },
           },
@@ -577,6 +610,9 @@ $(function () {
           normal: {
             label: {
               show: true,
+              formatter: function (d) {
+                return breakText(d.name);
+              },
             },
             labelLine: {
               show: true,
@@ -585,13 +621,14 @@ $(function () {
           emphasis: {
             label: {
               show: true,
-              formatter: "{b}" + "" + "\n({d}%)",
+              formatter: function (d) {
+                return breakText(d.name) + " (" + d.percent + "%)";
+              },
               position: "center",
               textStyle: {
                 fontWeight: "300",
+                backgroundColor: "white",
               },
-              width: 20,
-              overflow: "truncate",
             },
           },
         },
