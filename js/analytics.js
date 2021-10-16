@@ -162,7 +162,7 @@ $(function () {
       {
         name: "Categories",
         type: "pie",
-        radius: ["40%", "70%"],
+        radius: ["55%", "70%"],
         center: ["50%", "57.5%"],
         itemStyle: {
           normal: {
