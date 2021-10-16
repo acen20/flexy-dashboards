@@ -537,7 +537,7 @@ $(function () {
     },
 
     // Add custom colors
-    color: palette,
+    color: palette.reverse(),
 
     // Display toolbox
     toolbox: {
