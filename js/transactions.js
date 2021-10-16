@@ -1,6 +1,8 @@
 window.onload = () => {
-  update_tables_currencies();
-  change_asset_currency();
+  setTimeout(function () {
+    update_tables_currencies();
+    change_asset_currency();
+  }, 1500);
 };
 
 const update_currency = (e) => {
